@@ -1,6 +1,6 @@
 ---
 name: glianaai-chat
-description: "GlianaAI chat: calling Claude, GPT, Gemini, Grok, Kimi, DeepSeek, Qwen and other chat models through GlianaAI (api.glianalabs.com) with the OpenAI or Anthropic SDK, streaming, tools, controlling cost with max_tokens, and running Claude Code or another Anthropic-format agent on a GlianaAI key instead of an Anthropic account. Use with the glianaai skill."
+description: "GlianaAI chat: calling Claude, GPT, Gemini, Grok, Kimi, DeepSeek, Qwen and other chat models through GlianaAI (api.glianalabs.com) with the OpenAI or Anthropic SDK, streaming, tools, controlling cost with max_tokens, running Claude Code or Codex CLI on a GlianaAI key instead of an Anthropic or OpenAI account, pointing OpenAI-compatible apps (Open WebUI, Cline, Continue, n8n, LangChain) at it, and text embeddings for search and RAG. Use with the glianaai skill."
 license: MIT
 ---
 
@@ -12,10 +12,11 @@ Two formats, same models, same balance:
 |---|---|---|
 | OpenAI chat completions | `POST /v1/chat/completions` | `Authorization: Bearer gk_...` or a wallet (402) |
 | Anthropic Messages | `POST /v1/messages` (+ `/v1/messages/count_tokens`) | key only: `x-api-key: gk_...` or `Authorization: Bearer gk_...` |
+| OpenAI Responses | `POST /v1/responses` | key only: `Authorization: Bearer gk_...` |
 
-Both serve every chat model on sale, not only the vendor's own. Ids are GlianaAI's
+All three serve every chat model on sale, not only the vendor's own. Ids are GlianaAI's
 (`claude-sonnet-5.5`, `gpt-6.1-terra`, `gemini-4-carbon`, `kimi-k3.1-pro`, …), not the vendor's:
-list them with `GET /v1/catalog` and keep `category == "text"`. Each row has
+list them with `GET /v1/models` (`data` holds the chat models in OpenAI's shape) or `GET /v1/catalog`. Each row has
 `inMicroPerMTok` / `outMicroPerMTok` (price per 1M input and output tokens, micro-USD) and
 `contextTokens`.
 
@@ -64,6 +65,43 @@ claude
 No Anthropic account is involved; the calls come off the GlianaAI balance. If Claude Code is
 signed in to a Claude subscription, run `/logout` inside it first. A short task on
 claude-sonnet-5.5 costs a few cents; the key's daily cap (default $5) still applies.
+
+## Codex CLI on a GlianaAI key
+
+```toml
+# ~/.codex/config.toml
+model = "claude-sonnet-5.5"
+model_provider = "gliana"
+
+[model_providers.gliana]
+name = "GlianaAI"
+base_url = "https://api.glianalabs.com/v1"
+env_key = "GLIANA_API_KEY"
+wire_api = "responses"
+```
+
+Codex speaks the Responses format, served by `/v1/responses` for every chat model. The gateway keeps no
+conversation (`previous_response_id` is refused; Codex sends the whole history anyway), and Codex's
+built-in web search is not available through it.
+
+## Other OpenAI-compatible apps
+
+Open WebUI, LibreChat, Cline, Continue, n8n, LiteLLM and the OpenAI SDKs take an "OpenAI-compatible"
+provider: base URL `https://api.glianalabs.com/v1`, API key `gk_...`. Their model list loads from
+`GET /v1/models`.
+
+## Embeddings
+
+`POST /v1/embeddings` in OpenAI's format, model `bge-m3` (1024 dimensions, multilingual, good on
+Indonesian), $0.02 per million tokens with a $0.0001 minimum a call, up to 2048 texts a request.
+It is the only embedding model: another model name is refused, so an index never mixes two models.
+
+```python
+vecs = client.embeddings.create(model="bge-m3", input=["harga tiket kereta", "train fare"])
+```
+
+LangChain's `OpenAIEmbeddings` sends token ids unless told not to; pass
+`check_embedding_ctx_length=False` (and `model="bge-m3"`).
 
 ## Cost
 

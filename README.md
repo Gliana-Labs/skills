@@ -32,7 +32,7 @@ Prefer MCP? The skills also work with the GlianaAI MCP server: `https://mcp.glia
 |---|---|
 | [glianaai](skills/glianaai/SKILL.md) | Setup and the core loop every other skill builds on: find a model or tool, read its inputs, quote the price, run it, return the result |
 | [glianaai-media](skills/glianaai-media/SKILL.md) | Images, video, speech, music and transcripts: picking a model, the fields that drive the price, reference files, cheaper video recipes |
-| [glianaai-chat](skills/glianaai-chat/SKILL.md) | Claude, GPT, Gemini, Kimi and more through the OpenAI or Anthropic SDK, streaming, cost control, and Claude Code on a GlianaAI key |
+| [glianaai-chat](skills/glianaai-chat/SKILL.md) | Claude, GPT, Gemini, Kimi and more through the OpenAI or Anthropic SDK, streaming, cost control, Claude Code and Codex CLI on a GlianaAI key, OpenAI-compatible apps, bge-m3 embeddings |
 | [glianaai-indonesia](skills/glianaai-indonesia/SKILL.md) | Free official lookups (regions, prayer times, holidays, BMKG, NIK/NPWP checks, QRIS, terbilang) and paid address parsing, ID OCR and KYC |
 | [glianaai-crypto](skills/glianaai-crypto/SKILL.md) | Token prices, DEX liquidity, DeFi TVL, gas, perps, swap quotes and unsigned swap transactions, contract scans and calldata decoding |
 | [glianaai-web](skills/glianaai-web/SKILL.md) | Scrape, extract by schema, screenshot, search, YouTube summaries, real citations, and US company data from SEC filings |

@@ -60,7 +60,7 @@ Rules for the key:
 5. **Run it.**
    - Any model: `POST /v1/infer` with `{"model": "<id>", ...inputs}`.
    - A tool: its `path` and `method` from `/v1/tools`.
-   - Chat models also speak the OpenAI and Anthropic formats (see `glianaai-chat`).
+   - Chat models also speak the OpenAI and Anthropic formats, and `/v1/embeddings` (bge-m3) gives vectors (see `glianaai-chat`).
 6. **Return the result.** The response is `{"output": ..., "costMicroUsd": n}`. Media outputs
    are stable URLs on `api.glianalabs.com/v1/media/...`: give the user the link (or download it
    into the project if they asked for a file). Report what it cost.
