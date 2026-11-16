@@ -36,7 +36,7 @@ Prefer MCP? The skills also work with the GlianaAI MCP server: `https://mcp.glia
 | [glianaai-indonesia](skills/glianaai-indonesia/SKILL.md) | Free official lookups (regions, prayer times, holidays, BMKG, NIK/NPWP checks, QRIS, terbilang) and paid address parsing, ID OCR and KYC |
 | [glianaai-crypto](skills/glianaai-crypto/SKILL.md) | Token prices, DEX liquidity, DeFi TVL, gas, perps, swap quotes and unsigned swap transactions, contract scans and calldata decoding |
 | [glianaai-web](skills/glianaai-web/SKILL.md) | Scrape, extract by schema, screenshot, search, YouTube summaries, real citations, and US company data from SEC filings |
-| [glianaai-provider](skills/glianaai-provider/SKILL.md) | Sell inference: serve an open-weight model GlianaAI sells from your own GPU or a hosted endpoint, check it, price it to win calls, list it and get paid in USDC per token |
+| [glianaai-provider](skills/glianaai-provider/SKILL.md) | Sell inference: serve a chat model GlianaAI sells from your own GPU or a hosted endpoint, check it, price it to win calls, list it and get paid in USDC per token |
 
 Nothing in these skills hardcodes a model list or a price: they tell the agent to read the live
 catalogue (`/v1/models`, `/v1/tools`, `/v1/price`), which is always current.

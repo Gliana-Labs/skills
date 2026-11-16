@@ -1,6 +1,6 @@
 ---
 name: glianaai-provider
-description: "Become a GlianaAI model provider: serve an open-weight chat model (DeepSeek, GLM, Kimi, MiniMax, Inkling and others GlianaAI sells) from your own GPU or a hosted OpenAI-compatible endpoint, check it meets the rules, pick a price that wins calls, list it on the GlianaAI dashboard and get paid in USDC per token. Use when someone wants to sell inference, earn from idle GPUs, or list an endpoint on GlianaAI."
+description: "Become a GlianaAI model provider: serve a chat model GlianaAI sells (Claude, GPT, Gemini, Grok, DeepSeek, GLM, Kimi, MiniMax and others) from your own GPU or a hosted OpenAI-compatible endpoint, check it meets the rules, pick a price that wins calls, list it on the GlianaAI dashboard and get paid in USDC per token. Use when someone wants to sell inference, earn from idle GPUs, or list an endpoint on GlianaAI."
 license: MIT
 ---
 
@@ -25,7 +25,7 @@ Per model, in dollars per 1M tokens (`in_per_mtok` / `out_per_mtok`):
 - `to_beat`: ask under this on both sides to get calls; another route is tried first at your price. `null` means only `max` applies.
 - `cheapest_seller`: the cheapest provider already listed, if any.
 
-Only open-weight models are listable. A model that is not in the list cannot be listed yet: the
+Every chat model GlianaAI sells is listable. A model that is not in the list cannot be listed yet: the
 human asks for it with the "Model not in the list?" form on https://dashboard.glianalabs.com/provider,
 and GlianaAI adds it to its catalog first.
 
