@@ -7,7 +7,8 @@ license: MIT
 # GlianaAI provider
 
 GlianaAI routes each chat call to the cheapest route that can serve it. A provider lists an
-OpenAI-compatible endpoint for models GlianaAI already sells; when it is the cheapest healthy
+OpenAI-compatible (`{base}/chat/completions`, Bearer key) or Anthropic-compatible (`{base}/messages`,
+`x-api-key`) endpoint for models GlianaAI already sells; when it is the cheapest healthy
 route, it answers the call and earns its own price for the tokens. Guide for humans:
 https://ai.glianalabs.com/docs/provider
 
@@ -59,6 +60,10 @@ Any tunnel or reverse proxy that gives an https address on their own domain is f
 
 ## 4. Check it the way GlianaAI will
 
+For an Anthropic-compatible endpoint, send the same check to `{base}/messages` with
+`x-api-key: $SELLER_KEY` and `anthropic-version: 2023-06-01`; the reply's `content` must hold text or
+thinking. The OpenAI-compatible checks:
+
 ```bash
 # Plain: must return choices[0].message (text, or reasoning only is fine for a thinking model)
 curl -s https://llm.example.com/v1/chat/completions \
@@ -83,7 +88,8 @@ providers); `usage` in the reply is welcome but checked against GlianaAI's own c
 ## 6. List it (the human does this)
 
 Listing needs the human's Google sign-in at https://dashboard.glianalabs.com/provider. Give them
-each value in its own code block: endpoint name, base URL (ending in `/v1`), and per model the
+each value in its own code block: endpoint name, its API (OpenAI- or Anthropic-compatible), base URL
+(ending in `/v1`), and per model the
 GlianaAI model id, the upstream name (the name the server uses, e.g. the vLLM model path) and both
 prices. They paste the key themselves; never type, print or paste it for them.
 
