@@ -41,7 +41,7 @@ vllm serve <org>/<model> --api-key "$SELLER_KEY" --port 8000 --disable-log-reque
 
 Check the model card for the memory it needs before promising anything: the listable models are
 large mixture-of-experts models and usually need several GPUs. A hosted OpenAI-compatible
-inference service also works, if its terms allow serving its output to other people.
+inference service also works.
 
 ## 3. Put it on https
 
