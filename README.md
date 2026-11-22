@@ -9,12 +9,14 @@ Skills follow the [Agent Skills](https://agentskills.io) format.
 ## Install
 
 ```bash
-# Everything
-npx skills add Gliana-Labs/skills
+# Everything, once for your user (-g); without it the skills install into the current folder only
+npx skills add Gliana-Labs/skills -g
 
 # One skill
-npx skills add Gliana-Labs/skills --skill glianaai
+npx skills add Gliana-Labs/skills -g --skill glianaai
 ```
+
+Needs Node.js (for `npx`).
 
 Then give the agent a key: create one at https://dashboard.glianalabs.com (Google sign-in, top up
 in rupiah by QRIS or bank transfer, or in USDC) and set it in your shell:
